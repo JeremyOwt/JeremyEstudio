@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeremy García | Full Stack & WordPress Developer</title>
+    <meta name="description"
+        content="Desarrollador Web Freelance. Creación de sitios web rápidos, tiendas online WooCommerce, Landing Pages y sistemas web orientados a conversión y SEO.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/profile.png">
+
+    <!-- Tailwind CSS (CDN - Modo Script para config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], },
+                    colors: {
+                        primary: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS CSS para animaciones al hacer scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Íconos: Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="bg-white text-gray-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased overflow-x-hidden transition-colors duration-300">
+
+    <!-- Background Blobs -->
+    <div class="bg-blob w-96 h-96 bg-purple-500 top-0 left-0"></div>
+    <div class="bg-blob w-96 h-96 bg-indigo-500 top-40 right-10" style="animation-delay: -2s;"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold tracking-tighter">
+                        Jeremy<span class="text-indigo-500">.</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#services" class="hover:text-indigo-500 transition-colors"
+                        data-i18n="nav_services">Servicios</a>
+                    <a href="#portfolio" class="hover:text-indigo-500 transition-colors"
+                        data-i18n="nav_portfolio">Portfolio</a>
+                    <a href="#about" class="hover:text-indigo-500 transition-colors" data-i18n="nav_about">Sobre Mí</a>
+                    <a href="#contact"
+                        class="px-5 py-2.5 rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition shadow-lg shadow-indigo-500/30"
+                        data-i18n="nav_contact">Cotizar Ahora</a>
+
+                    <!-- Controls (Theme & Lang) -->
+                    <div class="flex items-center space-x-3 border-l border-gray-300 dark:border-gray-700 pl-4">
+                        <button id="themeToggle"
+                            class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-800 transition">
+                            <i class="ph ph-moon text-xl dark:hidden"></i>
+                            <i class="ph ph-sun text-xl hidden dark:block"></i>
+                        </button>
+                        <button id="langToggle"
+                            class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-800 transition font-bold text-sm">
+                            EN
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <!-- Controls Mobile -->
+                    <button id="themeToggleMobile"
+                        class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-800 transition">
+                        <i class="ph ph-moon text-xl dark:hidden"></i>
+                        <i class="ph ph-sun text-xl hidden dark:block"></i>
+                    </button>
+                    <button id="langToggleMobile"
+                        class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-800 transition font-bold text-sm">EN</button>
+
+                    <button id="mobileMenuBtn"
+                        class="text-gray-900 dark:text-white hover:text-indigo-500 focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu"
+            class="md:hidden hidden bg-white dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="#services" class="block px-3 py-2 text-base font-medium hover:text-indigo-500"
+                    data-i18n="nav_services">Servicios</a>
+                <a href="#portfolio" class="block px-3 py-2 text-base font-medium hover:text-indigo-500"
+                    data-i18n="nav_portfolio">Portfolio</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium hover:text-indigo-500"
+                    data-i18n="nav_about">Sobre Mí</a>
+                <a href="#contact"
+                    class="mt-4 w-[90%] text-center block px-5 py-3 rounded-full bg-indigo-600 text-white font-medium"
+                    data-i18n="nav_contact">Cotizar Ahora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+
+            <span
+                class="inline-flex items-center px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-6"
+                data-aos="fade-down">
+                <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                <span data-i18n="hero_badge">Disponible para nuevos proyectos</span>
+            </span>
+
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight" data-aos="fade-up"
+                data-aos-delay="100">
+                <span data-i18n="hero_title_1">Transformo tus ideas en</span><br>
+                <span class="text-gradient" data-i18n="hero_title_2">Experiencias Digitales Rentables</span>
+            </h1>
+
+            <p class="mt-4 text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-10"
+                data-aos="fade-up" data-aos-delay="200" data-i18n="hero_subtitle">
+                Soy Jeremy García, un desarrollador web Full Stack especializado en WordPress, React y automatizaciones.
+                Diseño webs rápidas y optimizadas para SEO que convierten visitantes en clientes.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
+                <a href="#contact"
+                    class="px-8 py-4 rounded-full bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 transition transform hover:-translate-y-1 shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center justify-center gap-2">
+                    <span data-i18n="hero_cta_1">Solicitar Presupuesto</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+                <a href="#services"
+                    class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-900 font-bold text-lg hover:border-indigo-500 dark:hover:border-indigo-500 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <span data-i18n="hero_cta_2">Ver Servicios</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SERVICES LOGOS / TECH STACK -->
+    <section class="py-10 border-y border-gray-100 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900/50">
+        <div class="max-w-7xl mx-auto px-4 overflow-hidden">
+            <p class="text-center text-sm font-semibold text-gray-500 dark:text-gray-400 mb-6 tracking-wider uppercase"
+                data-i18n="tech_title">Tecnologías y herramientas que domino</p>
+            <div
+                class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 cursor-default">
+                <i class="ph-fill ph-wordpress-logo text-5xl hover:text-[#21759b]"></i>
+                <i class="ph-fill ph-file-html text-5xl hover:text-[#e44d26]"></i>
+                <i class="ph-fill ph-file-css text-5xl hover:text-[#264de4]"></i>
+                <i class="ph-fill ph-file-js text-5xl hover:text-[#f7df1e]"></i>
+                <div class="text-5xl font-bold font-mono hover:text-[#61dafb]">Re</div> <!-- React pseudo icon -->
+                <i class="ph-fill ph-shopping-cart text-5xl hover:text-[#96588a]"></i> <!-- Woo proxy -->
+                <i class="ph-fill ph-robot text-5xl hover:text-[#00c7a3]"></i> <!-- Automations proxy -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold mb-4" data-aos="fade-up" data-i18n="services_title">Servicios de
+                    Desarrollo Web</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="100"
+                    data-i18n="services_desc">Soluciones a medida diseñadas para hacer crecer tu negocio en internet.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div
+                        class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph ph-rocket-launch"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="srv_1_title">Landing Pages</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="srv_1_desc">Páginas de aterrizaje
+                        altamente optimizadas diseñadas con un solo objetivo: captar leads y generar ventas rápidas.</p>
+                    <ul class="text-sm space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><i class="ph ph-check-circle text-green-500 mr-2"></i>Alta tasa de conversión</li>
+                        <li><i class="ph ph-check-circle text-green-500 mr-2"></i>Carga ultrarrápida</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div
+                        class="w-14 h-14 bg-pink-100 dark:bg-pink-900/30 rounded-xl flex items-center justify-center text-pink-600 dark:text-pink-400 text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph ph-shopping-bag"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="srv_2_title">Tiendas Online (E-commerce)</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="srv_2_desc">Plataformas de venta
+                        completas (WooCommerce) automatizadas, pasarelas de pago y gestión de inventario fácil.</p>
+                    <ul class="text-sm space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><i class="ph ph-check-circle text-green-500 mr-2"></i>Pagos Seguros</li>
+                        <li><i class="ph ph-check-circle text-green-500 mr-2"></i>Panel auto-administrable</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div
+                        class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph ph-code-block"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="srv_3_title">Aplicaciones Web</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="srv_3_desc">Sistemas a medida (SaaS,
+                        CRMs, portales) construidos con React y PHP que resuelven problemas específicos de tu negocio.
+                    </p>
+                    <ul class="text-sm space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><i class="ph ph-check-circle text-green-500 mr-2"></i>Lógica compleja</li>
+                        <li><i class="ph ph-check-circle text-green-500 mr-2"></i>Bases de datos</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <div
+                        class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph ph-buildings"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="srv_4_title">Sitios Corporativos</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="srv_4_desc">Presencia digital
+                        profesional para empresas e instituciones. Muestra la identidad de tu marca, servicios y
+                        portafolio.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition duration-300 group lg:col-span-2"
+                    data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div
+                            class="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center text-orange-600 dark:text-orange-400 text-3xl shrink-0 group-hover:scale-110 transition">
+                            <i class="ph ph-gauge"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2" data-i18n="srv_5_title">Mantenimiento y Optimización Web
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400" data-i18n="srv_5_desc">¿Ya tienes web pero es
+                                lenta, fue hackeada o no vende? Me encargo de optimizar la velocidad (WPO), mejorar el
+                                SEO técnico, implementar seguridad y darle mantenimiento mensual.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON / EDUCATION SECTION -->
+    <section class="py-20 bg-gray-50 dark:bg-zinc-900/50 border-y border-gray-100 dark:border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="comp_title" data-aos="fade-up">¿Qué tipo de
+                    web necesitas?</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-i18n="comp_desc" data-aos="fade-up"
+                    data-aos-delay="100">Una guía rápida para ayudarte a tomar la mejor decisión según tus objetivos.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Comparison Box 1 -->
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-zinc-700"
+                    data-aos="fade-right">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full text-indigo-600">
+                            <i class="ph ph-funnel text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Landing Page vs Sitio Web</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm" data-i18n="comp_1_desc">Una <strong>Landing
+                            Page</strong> es de una sola página, ideal para campañas de publicidad (Ads) enfocada 100%
+                        en captar un lead o venta. Un <strong>Sitio Web Corporativo</strong> tiene múltiples páginas
+                        (Inicio, Nosotros, Servicios, Contacto) y sirve para presencia institucional y SEO a largo
+                        plazo.</p>
+                </div>
+
+                <!-- Comparison Box 2 -->
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-zinc-700"
+                    data-aos="fade-left">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-pink-100 dark:bg-pink-900/50 p-3 rounded-full text-pink-600">
+                            <i class="ph ph-wordpress-logo text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">WordPress vs Desarrollo a Medida</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm" data-i18n="comp_2_desc">
+                        <strong>WordPress</strong> es perfecto y económico para el 90% de los negocios, tiendas y blogs,
+                        permitiéndote auto-gestionar contenido fácilmente. El <strong>Desarrollo a Medida
+                            (React/Node)</strong> es necesario si buscas funcionalidades únicas, como una red social, un
+                        SaaS o un sistema de gestión empresarial complejo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO PREVIEW -->
+    <section id="portfolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12" data-aos="fade-up">
+                <div class="max-w-2xl">
+                    <h2 class="text-4xl font-bold mb-4" data-i18n="port_title">Proyectos Destacados</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-400" data-i18n="port_desc">Una selección de trabajos
+                        recientes diseñados para generar impacto.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-800" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div
+                        class="w-full h-80 bg-gray-200 dark:bg-zinc-700 bg-[url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8 text-white">
+                        <span class="text-indigo-400 font-semibold mb-2">E-commerce • WooCommerce</span>
+                        <h3 class="text-2xl font-bold mb-2">Tienda de Tecnología</h3>
+                        <p class="text-gray-300 text-sm mb-4">Optimización de velocidad y rediseño de UI/UX, logrando un
+                            aumento del 40% en ventas.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-800" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div
+                        class="w-full h-80 bg-gray-200 dark:bg-zinc-700 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8 text-white">
+                        <span class="text-pink-400 font-semibold mb-2">React Web App • Dashboard</span>
+                        <h3 class="text-2xl font-bold mb-2">CRM Inmobiliario</h3>
+                        <p class="text-gray-300 text-sm mb-4">Sistema a medida para gestión de propiedades, agentes e
+                            integración con APIs externas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonials"
+        class="py-24 bg-gray-50 dark:bg-zinc-900/50 border-t border-gray-100 dark:border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <!-- Workana Gold Badge -->
+                <div class="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border border-yellow-500/30 text-yellow-700 dark:text-yellow-400 px-4 py-1.5 rounded-full text-sm font-bold mb-6"
+                    data-aos="fade-down">
+                    <i class="ph-fill ph-star"></i>
+                    <span>Nivel Gold en Workana (Top 15 Argentina)</span>
+                </div>
+                <h2 class="text-4xl font-bold mb-4" data-aos="fade-up" data-i18n="test_title">Lo que dicen mis clientes
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="100"
+                    data-i18n="test_desc">Más de 6 proyectos exitosos avalan mi trabajo y compromiso.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass p-8 rounded-2xl relative" data-aos="fade-up" data-aos-delay="100">
+                    <i class="ph-fill ph-quotes text-4xl text-indigo-500/20 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex items-center justify-center text-indigo-600 font-bold text-xl">
+                            B</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Bárbara</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">JavaScript, MySQL, PHP, API, HTML,
+                                WordPress</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"Buen manejo de comunicación y tiempos de
+                        respuesta, me gusto que ofrece opciones en momentos en los cuales tienes que evaluar diseño y
+                        utilidad, fue bastante práctico trabajar con él, volvería a realizar cualquier proyecto con
+                        Jeremy."</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass p-8 rounded-2xl relative row-span-2 flex flex-col" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <i class="ph-fill ph-quotes text-4xl text-indigo-500/20 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-pink-100 dark:bg-pink-900/50 rounded-full flex items-center justify-center text-pink-600 font-bold text-xl">
+                            M</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Maximiliano</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Tienda Nube, API, WhatsApp,
+                                Clientify</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow overflow-y-auto pr-2 custom-scrollbar" style="max-height: 380px;">
+                        <p class="text-gray-600 dark:text-gray-300 italic text-sm space-y-3">
+                            <span>"Jeremy demostró excelencia en cada etapa del proyecto. Entregó resultados sólidos,
+                                limpios y profesionales, alineados con los objetivos pactados."</span>
+                            <span class="block">"Su atención al detalle evitó retrabajos y su planificación fue
+                                impecable, cumpliendo cada hito antes del plazo. La comunicación fue clara, constante y
+                                efectiva. Respondió rápido, gestionó expectativas con precisión y propuso mejoras que
+                                elevaron el resultado final."</span>
+                            <span class="block">"No se limitó a ejecutar: entendió el contexto del negocio y tomó
+                                decisiones técnicas alineadas al impacto real. La documentación entregada fue ordenada y
+                                completa, facilitando mantenimiento y escalabilidad."</span>
+                            <span class="block">"Lo recomiendo totalmente y lo volvería a contratar sin dudar. Ideal
+                                para equipos que buscan resultados confiables y de alto impacto."</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass p-8 rounded-2xl relative" data-aos="fade-up" data-aos-delay="300">
+                    <i class="ph-fill ph-quotes text-4xl text-indigo-500/20 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">
+                            C</div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-i18n="test_3_name">Cliente E-commerce</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Shopify</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic" data-i18n="test_3_desc">"Desarrollo de Plataforma
+                        E-commerce para Venta Online de Ropa Deportiva con Shopify. Excelente trabajo, la tienda quedó
+                        rapidísima y fue muy fácil de gestionar."</p>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="glass p-8 rounded-2xl relative md:col-span-2 lg:col-span-1" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <i class="ph-fill ph-quotes text-4xl text-indigo-500/20 absolute top-6 right-6"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center text-orange-600 font-bold text-xl">
+                            W</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Walter Eschler</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Landing Page Profesional</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">"Excelente. Todo cambio se realizaba bien
+                        hablando. Recomendado."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SECTION (THE GAME) -->
+    <section class="py-20 bg-indigo-600 dark:bg-indigo-900 text-white overflow-hidden relative" id="interactive">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-center mb-6" data-i18n="game_title" data-aos="zoom-in">Atrapa mis "Bugs"
+            </h2>
+            <p class="text-center max-w-xl mx-auto mb-8 text-indigo-100" data-i18n="game_desc" data-aos="zoom-in"
+                data-aos-delay="100">Como desarrollador, mi trabajo es eliminar los problemas. Toca la pantalla para
+                ayudarme a limpiar el código antes de lanzar el proyecto.</p>
+
+            <div id="gameArea"
+                class="w-full max-w-3xl h-64 md:h-80 game-container bg-white/10 glass cursor-crosshair border border-indigo-400/30"
+                data-aos="fade-up" data-aos-delay="200">
+                <!-- Bugs will be generated here by app.js -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span id="gameStartText" class="text-2xl font-bold text-indigo-200/50" data-i18n="game_start">Atrapa
+                        5 bugs!</span>
+                </div>
+            </div>
+
+            <div class="mt-6 flex items-center gap-4 text-xl font-bold" id="scoreBoard">
+                <i class="ph-fill ph-bug"></i> Puntaje: <span id="gameScore">0</span> / 5
+            </div>
+            <div id="gameWinMsg" class="hidden mt-4 text-green-300 font-bold text-xl text-center" data-i18n="game_win">
+                ¡Código Limpio! Listo para producción 🚀</div>
+        </div>
+        <!-- Decorative bg -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </section>
+
+    <!-- ABOUT & SKILLS -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6" data-i18n="about_title">Sobre Mí</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6" data-i18n="about_p1">
+                        Hola, soy Jeremy. Más que un programador que "tira código", me considero un solucionador de
+                        problemas. Entiendo que tú no quieres una página web; quieres más clientes, automatizar procesos
+                        o validar una idea.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6" data-i18n="about_p2">
+                        Mi enfoque radica en la calidad técnica <strong>(sitios rápidos, limpios, seguros)</strong> y el
+                        diseño estratégico <strong>(interfaces intuitivas, SEO Friendly, UX)</strong>. No reutilizo
+                        plantillas mediocres, construyo bases sólidas.
+                    </p>
+
+                    <h3 class="text-xl font-bold mb-4 mt-8" data-i18n="skills_title">Mi Stack Técnico</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-lg text-sm font-semibold">WordPress
+                            & WooCommerce</span>
+                        <span class="px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-lg text-sm font-semibold">PHP &
+                            MySQL</span>
+                        <span class="px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-lg text-sm font-semibold">HTML5 &
+                            CSS3 nativo</span>
+                        <span class="px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-lg text-sm font-semibold">React &
+                            Vanilla JS</span>
+                        <span class="px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-lg text-sm font-semibold">Tailwind
+                            CSS</span>
+                        <span
+                            class="px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-lg text-sm font-semibold">Optimización
+                            SEO/WPO</span>
+                    </div>
+                </div>
+
+                <div class="relative" data-aos="fade-left">
+                    <div
+                        class="aspect-square rounded-full border-2 border-indigo-500/20 p-2 border-dashed animate-[spin_20s_linear_infinite]">
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center p-8">
+                        <div
+                            class="w-full h-full rounded-full bg-indigo-100 dark:bg-zinc-800 flex items-center justify-center relative overflow-hidden group">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 opacity-20 group-hover:opacity-40 transition duration-500 z-10">
+                            </div>
+                            <img src="assets/profile.png" alt="Jeremy García"
+                                class="w-full h-full object-cover relative z-0">
+                            <div
+                                class="absolute bottom-10 bg-white/90 dark:bg-black/80 px-4 py-2 rounded-full font-mono text-sm shadow-xl backdrop-blur-sm">
+                                &lt;code&gt; / &gt; design
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="py-20 bg-gray-50 dark:bg-zinc-900/50 border-t border-gray-100 dark:border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16" data-i18n="process_title" data-aos="fade-up">¿Cómo
+                trabajaremos juntos?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center relative">
+                <!-- Line connect (Desktop) -->
+                <div
+                    class="hidden md:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-gray-200 dark:bg-zinc-700 z-0">
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-20 h-20 rounded-full bg-white dark:bg-zinc-800 border-4 border-indigo-500 flex items-center justify-center text-2xl font-bold text-indigo-500 mb-6 shadow-xl">
+                        1</div>
+                    <h3 class="font-bold text-xl mb-2" data-i18n="proc_1_title">Descubrimiento</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="proc_1_desc">Analizamos tu negocio,
+                        objetivos y requerimientos para definir la estrategia exacta.</p>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-20 h-20 rounded-full bg-white dark:bg-zinc-800 border-4 border-indigo-500 flex items-center justify-center text-2xl font-bold text-indigo-500 mb-6 shadow-xl">
+                        2</div>
+                    <h3 class="font-bold text-xl mb-2" data-i18n="proc_2_title">Propuesta y Diseño</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="proc_2_desc">Te presento una
+                        estructura, bocetos y un presupuesto cerrado sin sorpresas.</p>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-20 h-20 rounded-full bg-white dark:bg-zinc-800 border-4 border-indigo-500 flex items-center justify-center text-2xl font-bold text-indigo-500 mb-6 shadow-xl">
+                        3</div>
+                    <h3 class="font-bold text-xl mb-2" data-i18n="proc_3_title">Desarrollo Mágico</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="proc_3_desc">Escribo código limpio.
+                        Tendrás acceso a un entorno de pruebas para ver el avance.</p>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center" data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-20 h-20 rounded-full bg-indigo-500 border-4 border-indigo-500 flex items-center justify-center text-2xl font-bold text-white mb-6 shadow-xl shadow-indigo-500/50">
+                        4</div>
+                    <h3 class="font-bold text-xl mb-2" data-i18n="proc_4_title">Lanzamiento</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="proc_4_desc">Migración al servidor
+                        final, optimización de velocidad, chequeos SEO y ¡al aire!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-24 border-t border-gray-100 dark:border-zinc-800 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-i18n="faq_title">Preguntas
+                    Frecuentes</h2>
+                <p class="text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="100"
+                    data-i18n="faq_desc">Todo lo que necesitas saber antes de empezar a trabajar juntos.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-100 dark:border-zinc-700 overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <button
+                        class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-zinc-700/50 transition-colors">
+                        <span class="font-bold text-lg" data-i18n="faq_1_q">¿El servicio incluye dominio y
+                            hosting?</span>
+                        <i class="ph ph-caret-down text-xl transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 dark:text-gray-400" data-i18n="faq_1_a">
+                        Sí, ofrezco la opción de gestionar tu dominio y hosting profesional. Ten en cuenta que incluir
+                        este servicio <strong>aumenta el presupuesto final</strong> del proyecto.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-100 dark:border-zinc-700 overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <button
+                        class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-zinc-700/50 transition-colors">
+                        <span class="font-bold text-lg" data-i18n="faq_2_q">¿Cuáles son los tiempos de entrega?</span>
+                        <i class="ph ph-caret-down text-xl transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 dark:text-gray-400" data-i18n="faq_2_a">
+                        <ul class="list-disc pl-5 space-y-2 mt-2">
+                            <li><strong>Landing Pages:</strong> 3 días (dependiendo de las animaciones).</li>
+                            <li><strong>Páginas Corporativas:</strong> 1 semana.</li>
+                            <li><strong>Tiendas E-commerce:</strong> 8 a 10 días, dependiendo de la cantidad de
+                                productos a cargar.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-100 dark:border-zinc-700 overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <button
+                        class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-zinc-700/50 transition-colors">
+                        <span class="font-bold text-lg" data-i18n="faq_3_q">¿Cuáles son los métodos de pago?</span>
+                        <i class="ph ph-caret-down text-xl transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 dark:text-gray-400" data-i18n="faq_3_a">
+                        Acepto pagos mediante <strong>Transferencia Bancaria</strong> y <strong>Efectivo</strong>.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-100 dark:border-zinc-700 overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <button
+                        class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-zinc-700/50 transition-colors">
+                        <span class="font-bold text-lg" data-i18n="faq_4_q">¿Ofreces soporte post entrega?</span>
+                        <i class="ph ph-caret-down text-xl transition-transform duration-300 transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 dark:text-gray-400" data-i18n="faq_4_a">
+                        Sí, brindo soporte post entrega <strong>sin costo</strong>. Además, te entrego <strong>videos
+                            tutoriales</strong> sobre cómo manejar la web para que seas independiente y no dependas
+                        siempre de un desarrollador.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute -left-40 top-20 w-80 h-80 bg-pink-500/10 dark:bg-pink-500/20 rounded-full blur-3xl z-0">
+        </div>
+        <div
+            class="absolute -right-40 bottom-20 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full blur-3xl z-0">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div
+                class="bg-white dark:bg-zinc-800 rounded-3xl shadow-2xl overflow-hidden glass border border-gray-200 dark:border-zinc-700/50">
+                <div class="p-8 md:p-16">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl font-extrabold mb-4" data-i18n="contact_title">Hablemos de tu proyecto</h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-400" data-i18n="contact_desc">Cuéntame qué
+                            necesitas. Te responderé en menos de 24 horas con opciones y un presupuesto claro para
+                            empezar.</p>
+                    </div>
+
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name"
+                                    class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+                                    data-i18n="form_name">Tu Nombre</label>
+                                <input type="text" id="name"
+                                    class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="email"
+                                    class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email</label>
+                                <input type="email" id="email"
+                                    class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="tipo" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+                                data-i18n="form_type">¿Qué necesitas?</label>
+                            <select id="tipo"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition text-gray-700 dark:text-gray-300">
+                                <option value="landing" data-i18n="form_opt_1">Landing Page</option>
+                                <option value="ecommerce" data-i18n="form_opt_2">Tienda Online (WooCommerce)</option>
+                                <option value="corporate" data-i18n="form_opt_3">Sitio Corporativo o Medida</option>
+                                <option value="maintenance" data-i18n="form_opt_4">Mantenimiento / Optimización</option>
+                                <option value="other" data-i18n="form_opt_5">Duda / Otro proyecto</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+                                data-i18n="form_msg">Cuéntame los detalles</label>
+                            <textarea id="message" rows="4"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition resize-none"
+                                placeholder="Opcional pero recomendado..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 transition transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(99,102,241,0.3)]">
+                            <span data-i18n="form_submit">Enviar Solicitud</span>
+                        </button>
+                        <p class="text-center text-xs text-gray-500 mt-2" data-i18n="form_privacy">Sin compromisos. Tus
+                            datos están seguros.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+        class="py-10 text-center border-t border-gray-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 pb-24 lg:pb-10">
+        <p class="text-gray-500 dark:text-gray-400 font-medium font-mono">
+            &copy; 2026 Jeremy García. <span data-i18n="footer_text">Todos los derechos reservados. Construido con
+                código propio.</span>
+        </p>
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="https://github.com/JeremyOwt" target="_blank" rel="noopener noreferrer"
+                class="text-gray-400 hover:text-indigo-500 transition text-2xl" aria-label="GitHub"><i
+                    class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.instagram.com/jeremy._.fx/" target="_blank" rel="noopener noreferrer"
+                class="text-gray-400 hover:text-indigo-500 transition text-2xl" aria-label="Instagram"><i
+                    class="ph-fill ph-instagram-logo"></i></a>
+            <a href="https://wa.me/541123872553" target="_blank" rel="noopener noreferrer"
+                class="text-gray-400 hover:text-indigo-500 transition text-2xl" aria-label="WhatsApp"><i
+                    class="ph-fill ph-whatsapp-logo"></i></a>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/541123872553" target="_blank" rel="noopener noreferrer"
+        class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-[#25D366]/50 transition-all duration-300 flex items-center justify-center group"
+        aria-label="Contactar por WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+        <span
+            class="absolute right-full mr-4 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white px-3 py-1.5 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm pointer-events-none">¡Hablemos!</span>
+    </a>
+
+    <!-- Scripts -->
+    <!-- AOS Library init -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+    </script>
+
+    <!-- Application Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
